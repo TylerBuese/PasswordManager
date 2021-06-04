@@ -15,6 +15,7 @@ function Verify-PasswordFile() {
     else {
         Write-Host("Password file does not exist, creating directory...")
         New-Item -ItemType File -Path $path -Value $config -Force
+        New-Item -ItemType File -Path $passPath -Value $config -Force
     }
     Set-Location -Path $global:passPath
 }
