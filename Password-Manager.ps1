@@ -1,7 +1,7 @@
 function Verify-PasswordFile() {
     $global:path = $env:APPDATA + "\PasswordManager\Config\config.json"
     $global:passPath = $env:APPDATA + "\PasswordManager\Passwords\"
-    $global:config = 
+    $global:config = #to be used at a later date :)
     @"
     {
         "DefaultValues:" {
@@ -56,7 +56,6 @@ function Get-Passwords() {
 
 function Set-Passwords() {
     $currentPasswords = Get-ChildItem -Path $passPath
-
     $passwords = @{
         passwordLocation        = @()
         passwordDescriptiveName = @()
@@ -67,10 +66,35 @@ function Set-Passwords() {
         $passwords.passwordDescriptiveName += $splitName[0]
     }
     for ($i = $currentPasswords.Count; $i -lt 999; $i++) {
+        $response = Read-Host("Would you like to generate a random password? Note: You will be brought to the generation wizard if you enter 'Y'. Y/N")
+        if ($response -match "y") {
+            $response = $true
+            $passString = $null
+            for ($o = 0; $o -lt 5; $o++) {
+                $password = Invoke-WebRequest -Uri "https://www.passwordrandom.com/query?command=password"
+                $passString += $password.content
+            }
+
+            $length = Read-Host("Please select how long you'd like the password to be (8-50)")
+            if ([int]$length -lt 8 -or $length -gt 50) {
+                Write-Host("Invalid password length.")
+                break
+            }
+
+            $NewPassword = $passString.substring(0, $length)
+
+            
+        } else {
+            $response = $null
+        }
         $passwords.passwordDescriptiveName += Read-Host("Please enter the name for this password: ")
         $tempPassPath = ($passPath + $passwords.passwordDescriptiveName[$i] + ".txt")
         $passwords.passwordLocation += New-Item -ItemType File -Path $tempPassPath -Force
-        $password = Read-Host("Please input the password you'd like to save: ") -AsSecureString
+        if ($response) {
+            $password = $NewPassword | ConvertTo-SecureString -AsPlainText -Force
+        } else {
+            $password = Read-Host("Please input the password you'd like to save: ") -AsSecureString
+        }
         $passwordUsername = "Username"
         $credential = New-Object System.Management.Automation.PSCredential($passwordUsername, $password)
         $credential.Password | ConvertFrom-SecureString | Set-Content $passwords.passwordLocation[$i]
@@ -116,7 +140,8 @@ Verify-PasswordFile
 $aliases = Get-Alias
 if (Test-Path alias:spw) {
 
-} else {
+}
+else {
     New-Alias -Name "gpw" -Value Get-Passwords
     New-Alias -Name "spw" -Value Set-Passwords
 }
