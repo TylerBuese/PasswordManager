@@ -1,5 +1,5 @@
 # PasswordManager
-Simple Powershell password manager, mine got taken away :(
+Simple Powershell password manager
 
 TO USE:
 
