@@ -11,5 +11,5 @@ TO USE:
 
 4.) Set up a new password by typing "spw", or Set-Password.
 
-5.) Get the password by typing "gpw", or Get-Passwords.
+5.) Get the password by typing "gpw", or Get-Passwords.\n
     i.) To remove passwords, navigate to %appdata%\PasswordManager\passwords and delete the respective files. (Note: In the future I'll create a delete function for this.)
