@@ -113,7 +113,13 @@ function Set-Passwords() {
 }
 
 function Add-ToProfile() {
-    $content = Get-Content $profile
+    try {
+    $content = Get-Content $profile -ErrorAction Stop
+    } catch {
+        $response = Read-Host("Profile not found, would you like to create one? Y/N")
+        if ($response -match "y") {
+            New-Item -ItemType file -Path $PROFILE -Force}
+    }
     try {
         $content = $content.Split(' ')
         if ($content -contains "`$currentPasswords") {
@@ -124,10 +130,10 @@ function Add-ToProfile() {
     catch {
         
     }
-    $passwordFilePath = Read-Host("Enter the location on where the script is located: ")
-    if (Test-Path -Path $passwordFilePath) { 
-        $passwordScript = Get-Content $passwordFilePath
-        Add-Content -Path $profile -Value $passwordScript
+    $passwordFilePath = Read-Host("Enter the location on where the Password Manager script is located: ")
+    if (Test-Path -Path $passwordFilePath) {
+        $passwordScript = Get-Content $passwordFilePath 
+        Add-Content -Path $profile -Value $passwordScript 
         Write-Host("Added script to profile - no more loading :)")
         return
     }
