@@ -9,6 +9,6 @@ TO USE:
 
 3.) If you'd like to use the password manager on PowerShell startup, type the command "Add-ToProfile", and enter the location of the password manager script.
 
-4.) Set up a new password by typing "spw", or Set-Password.
+4.) Set up a new password by typing "spw", or Set-Password. Use spw -random to generate a random password
 
 5.) Get the password by typing "gpw", or Get-Passwords. To remove passwords, navigate to %appdata%\PasswordManager\passwords and delete the respective files. (Note: In the future I'll create a delete function for this.)
