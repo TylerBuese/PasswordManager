@@ -56,6 +56,11 @@ function Get-Passwords() {
 }
 
 function Set-Passwords() {
+    [CmdletBinding()]
+    param (
+        [Parameter()]
+        [switch]$random
+    )
     $currentPasswords = Get-ChildItem -Path $passPath
     $passwords = @{
         passwordLocation        = @()
@@ -67,10 +72,9 @@ function Set-Passwords() {
         $passwords.passwordDescriptiveName += $splitName[0]
     }
     for ($i = $currentPasswords.Count; $i -lt 999; $i++) {
-        $response = Read-Host("Would you like to generate a random password? Note: You will be brought to the generation wizard if you enter 'Y'. Y/N")
-        if ($response -match "y") {
-            $response = $true
+        if ($random.IsPresent) {
             $passString = $null
+            Write-Host("Generating randomness...")
             for ($o = 0; $o -lt 5; $o++) {
                 $password = Invoke-WebRequest -Uri "https://www.passwordrandom.com/query?command=password"
                 $passString += $password.content
@@ -91,7 +95,7 @@ function Set-Passwords() {
         $passwords.passwordDescriptiveName += Read-Host("Please enter the name for this password: ")
         $tempPassPath = ($passPath + $passwords.passwordDescriptiveName[$i] + ".txt")
         $passwords.passwordLocation += New-Item -ItemType File -Path $tempPassPath -Force
-        if ($response) {
+        if ($random.IsPresent) {
             $password = $NewPassword | ConvertTo-SecureString -AsPlainText -Force
         } else {
             $password = Read-Host("Please input the password you'd like to save: ") -AsSecureString
@@ -151,4 +155,9 @@ if (Test-Path alias:spw) {
 else {
     New-Alias -Name "gpw" -Value Get-Passwords
     New-Alias -Name "spw" -Value Set-Passwords
+}
+
+function Remove-FromProfile {
+    $response = Read-Host("WARNING: This will wipe your entire profile. Are you sure you want to do this? Y/N")
+    if ($response -eq "y") {Set-Content $profile -Value $null}
 }
