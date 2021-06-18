@@ -59,7 +59,7 @@ function Set-Passwords() {
     [CmdletBinding()]
     param (
         [Parameter()]
-        [switch]$random
+        [switch]$Random
     )
     $currentPasswords = Get-ChildItem -Path $passPath
     $passwords = @{
@@ -113,6 +113,27 @@ function Set-Passwords() {
         else {
             return
         }
+    }
+}
+
+function Remove-Passwords {
+    [CmdletBinding()]
+    param (
+        [Parameter()]
+        [switch]$All
+
+    )
+    $passwords = gci $passPath
+    if ($all.IsPresent) {
+        Write-Host("WARNING: You are about to delete the following passwords. Are you sure? Y/N") -BackgroundColor Red -ForegroundColor White
+        $passwords.name.replace(".txt", "")
+        $response = Read-Host
+        if ($response -eq "Y") {
+            foreach ($item in $passwords) {
+                Remove-Item $item.FullName
+            }
+        }
+        return;
     }
 }
 
