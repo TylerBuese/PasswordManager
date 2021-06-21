@@ -1,7 +1,7 @@
 # PasswordManager
 Simple Powershell password manager
 
-TO USE:
+<h1>TO USE</h1>
 
 1.) Download or copy the code in the Password-Manager.ps1 file.
 
