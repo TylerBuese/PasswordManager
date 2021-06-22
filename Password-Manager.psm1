@@ -30,7 +30,7 @@ function Get-Passwords() {
     Write-Host("Type in a number of type in part of the name for your result.")
     $o = 1
     for ($i = 0; $i -lt $currentPasswords.count; $i++) {
-        Write-Host($o.ToString() + ".) " + $currentPasswords[$i])
+        Write-Host($o.ToString() + ".) " + $currentPasswords[$i].Replace(".txt", ""))
         $o++
     }
     $response = Read-Host("Which password would you like: ")
