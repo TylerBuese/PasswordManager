@@ -7,7 +7,7 @@ Simple Powershell password manager
 
 2.) Open Powershell.
 
-3.) Type "Import-Module <Path To Module>.
+3.) Type "Import-Module {Path To Module}.
 
 4.) To add to your profile, type "Add-ToProfile" into Powershell.
 
