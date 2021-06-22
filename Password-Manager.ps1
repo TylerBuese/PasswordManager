@@ -51,8 +51,6 @@ function Get-Passwords() {
     $Credential = New-Object System.Management.Automation.PsCredential($username, $encrypted)
     $Credential.GetNetworkCredential().Password | clip
     Write-Host("The password for $response has been copied to your clipboard.")
-    
-
 }
 
 function Set-Passwords() {
@@ -135,6 +133,29 @@ function Remove-Passwords {
         }
         return;
     }
+    $o = 1
+    for ($i = 0; $i -lt $passwords.Length; $i++) {
+        Write-Host($o.ToString() + ".) " + $passwords[$i].Name.Replace(".txt", ""))
+        $o++
+    }
+    $response = Read-Host("Which password would you like to delete: ")
+    try {
+        $response = $Passwords[[int]$response - 1]
+    }
+    catch {
+
+    }
+    $file = Get-ChildItem $passPath | ? { $_.Name -match $response }
+    if ($file.count -gt 1) {
+        Write-Host("Sorry, your query wasn't specific enough.")
+        return
+    }
+    $confirm = Read-Host("Are you sure you want to delete " + $file.name.Replace(".txt", "") + "? Y/N") 
+    if ($confirm -eq "Y") {
+        rm $file
+        Write-Host($file.name.Replace(".txt", "") + " has been deleted.")
+    }
+
 }
 
 function Add-ToProfile() {
