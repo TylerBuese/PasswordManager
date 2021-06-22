@@ -197,6 +197,7 @@ if (Test-Path alias:spw) {
 else {
     New-Alias -Name "gpw" -Value Get-Passwords
     New-Alias -Name "spw" -Value Set-Passwords
+    New-Alias -name "rpw" -Value Remove-Passwords
 }
 
 function Remove-FromProfile {
