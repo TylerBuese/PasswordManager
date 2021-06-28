@@ -3,18 +3,7 @@ Simple Powershell password manager
 
 <h1>TO USE</h1>
 
-1.) Download or copy the code in the Password-Manager.psm1 file.
-
-2.) Open Powershell.
-
-3.) Type "Import-Module {Path To Module}".
-
-4.) To add to your profile, type "Add-ToProfile" into Powershell.
-
-5.) Use "Get-Command -Module Password-Manager" to get all available commands
-
-<h1> Goals </h1>
-<p>The main goal of this project is to build a password manager so quick and easy to use, you can get and set passwords within seconds. The idea is to provide short aliases like gpw (Get-Password) and spw (Set-Password) to the user and let them have at it.</p>
+1.) Simply download the .zip, and run PasswordManager.exe
 
 <h1> News </h1>
 <p>Password manager is getting a GUI! </p>
