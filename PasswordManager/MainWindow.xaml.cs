@@ -32,6 +32,7 @@ namespace PasswordManager
         {
             pwmanListBox.Items.Clear();
             var password = new Password();
+            password.CreatePasswordRootStruct();
 
             string rootLocation = password.GetPasswordRootLocation();
             var passwords = Directory.GetFiles(rootLocation + "\\passwords");
@@ -84,7 +85,7 @@ namespace PasswordManager
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.FileName = "powershell.exe";
-                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file C:\Users\Tyler\AppData\Roaming\PasswordManager\Scripts\set-password.ps1 -Password " + pass + @" -PasswordLocation " + password.GetPasswordRootLocation() + @"\passwords\" + pwman_SetPass_PasswordName.Text + ".txt";
+                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file C:\Users\Tyler\AppData\Roaming\PasswordManager\Scripts\set-password.ps1 -Password " + "\"" + pass + "\"" + @" -PasswordLocation " + "\"" + password.GetPasswordRootLocation() + @"\passwords\" + pwman_SetPass_PasswordName.Text + ".txt" + "\"";
                 process.Start();
                 log.SetLog("Password created. Double click on password to copy to clipboard.");
                 pwman_ActivityLog_Label.Content = log.GetLog();

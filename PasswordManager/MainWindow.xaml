@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:PasswordManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000
-        " Width="404">
-    <Grid Margin="-1,0,9.6,-29.6">
+        " Width="410">
+    <Grid Margin="-1,0,-6.4,-29.6">
         <Grid.RowDefinitions>
             <RowDefinition Height="953*"/>
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="pwmanListBox" HorizontalAlignment="Left" Height="821" VerticalAlignment="Top" Width="388" Margin="2,43,0,0" MouseDoubleClick="pwManListBox_DoubleClick" KeyDown="pwmanListBox_KeyDown"/>
+        <ListBox x:Name="pwmanListBox" HorizontalAlignment="Left" Height="821" VerticalAlignment="Top" Width="400" Margin="2,43,-13,0" MouseDoubleClick="pwManListBox_DoubleClick" KeyDown="pwmanListBox_KeyDown"/>
         <Label x:Name="pwManWelcomeLabel" Content="" HorizontalAlignment="Center" Margin="1,10,0,0" VerticalAlignment="Top" Width="390" HorizontalContentAlignment="Center">
 
         </Label>
         <Button x:Name="pwmanSetPass_Btn" Content="Set Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="19,902,0,0" Height="21" Click="pwmanSetPass_Btn_Click"/>
-        <PasswordBox x:Name="pwman_SetPass_PasswordBox" HorizontalAlignment="Left" Margin="266,905,0,0" VerticalAlignment="Top" Width="119"/>
         <TextBox x:Name="pwman_SetPass_PasswordName" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Margin="141,905,0,0" SnapsToDevicePixels="True"/>
+        <PasswordBox x:Name="pwman_SetPass_PasswordBox" HorizontalAlignment="Left" Margin="266,905,0,0" VerticalAlignment="Top" Width="119"/>
         <Label x:Name="pwman_ActivityLog_Label" Content="" HorizontalAlignment="Left" Margin="10,928,0,9.6" Width="380"/>
         <Label Content="Password Name" HorizontalAlignment="Left" Margin="153,879,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="291,879,0,0" VerticalAlignment="Top"/>
