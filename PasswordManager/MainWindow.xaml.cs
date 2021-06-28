@@ -97,6 +97,8 @@ namespace PasswordManager
 
             }
             System.Threading.Thread.Sleep(1000);
+            pwman_SetPass_PasswordBox.Password = "";
+            pwman_SetPass_PasswordName.Text = "";
             GetPasswordwords();
 
 

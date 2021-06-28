@@ -34,6 +34,7 @@ namespace PasswordManager
                 Directory.CreateDirectory(passwordRootLocation); // creates root location
                 Directory.CreateDirectory(passwordRootLocation + @"\passwords"); // creates password folder
                 Directory.CreateDirectory(passwordRootLocation + @"\scripts"); // creates scripts folder
+                Directory.CreateDirectory(passwordRootLocation + @"\Log"); // creates scripts folder
                 string SetPassword = @"
 [CmdletBinding()]
 param (
@@ -42,7 +43,7 @@ param (
     [string]$Password,
     [string]$PasswordLocation
 )
-Start-Transcript -Path 'C:\Users\Tyler\AppData\Roaming\PasswordManager\Log\set-password.txt'
+Start-Transcript -Path $env:APPDATA\PasswordManager\Log\set-password.txt
 $passwordUsername = 'Username'
 $credential = New-Object System.Management.Automation.PSCredential($passwordUsername, $Password | ConvertTo-SecureString -AsPlainText -Force)
 $credential.Password | ConvertFrom-SecureString | Set-Content $PasswordLocation -Force
@@ -54,7 +55,7 @@ param (
     [Parameter()]
     $Location
 )
-Start-Transcript -Path 'C: \Users\Tyler\AppData\Roaming\PasswordManager\Log\get-password.txt'
+Start-Transcript -Path $env:APPDATA\PasswordManager\Log\get-password.txt
 Write-Host('Pass location = ' + $Location)
 $encrypted = Get-Content $Location | ConvertTo-SecureString
 $username = 'Username'
