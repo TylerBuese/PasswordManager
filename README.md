@@ -3,7 +3,7 @@ Simple Powershell password manager
 
 <h1>TO USE</h1>
 
-1.) Simply download the .zip, and run PasswordManager.exe
+1.) Simply download the .zip in the root folder, extract, and run PasswordManager.exe
 
 <h1> News </h1>
 <p>Password manager is getting a GUI! </p>
