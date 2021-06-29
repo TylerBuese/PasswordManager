@@ -26,6 +26,7 @@ namespace PasswordManager
         {
             InitializeComponent();
             GetPasswordwords();
+            
         }
 
         public void GetPasswordwords()
@@ -64,7 +65,7 @@ namespace PasswordManager
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.FileName = "powershell.exe";
-                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file C:\Users\Tyler\AppData\Roaming\PasswordManager\Scripts\get-password.ps1 -Location " + "\"" + PasswordLocation + "\"";
+                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PasswordManager\Scripts\get-password.ps1 -Location " + "\"" + PasswordLocation + "\"";
                 process.Start();
                 log.SetLog("The password for " + pwmanListBox.SelectedItem.ToString() + " has been copied to your clipboard.");
                 pwman_ActivityLog_Label.Content = log.GetLog();
@@ -85,8 +86,9 @@ namespace PasswordManager
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.FileName = "powershell.exe";
-                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file C:\Users\Tyler\AppData\Roaming\PasswordManager\Scripts\set-password.ps1 -Password " + "\"" + pass + "\"" + @" -PasswordLocation " + "\"" + password.GetPasswordRootLocation() + @"\passwords\" + pwman_SetPass_PasswordName.Text + ".txt" + "\"";
+                process.StartInfo.Arguments = @"-windowstyle hidden -noprofile -executionpolicy bypass -file " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PasswordManager\Scripts\set-password.ps1 -Password " + "\"" + pass + "\"" + @" -PasswordLocation " + "\"" + password.GetPasswordRootLocation() + @"\passwords\" + pwman_SetPass_PasswordName.Text + ".txt" + "\"";
                 process.Start();
+                MessageBox.Show(process.StartInfo.Arguments);
                 log.SetLog("Password created. Double click on password to copy to clipboard.");
                 pwman_ActivityLog_Label.Content = log.GetLog();
             } else
