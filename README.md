@@ -3,7 +3,7 @@ Simple Powershell password manager
 
 <h1>TO USE</h1>
 
-1.) Download or copy the code in the Password-Manager.psm1 file Switch the branch to GUI if you want the GUI version.
+1.) Download or copy the code in the Password-Manager.psm1 file. Switch the branch to GUI if you want the GUI version.
 
 2.) Open Powershell.
 
