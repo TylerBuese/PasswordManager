@@ -1,5 +1,5 @@
 # PasswordManager
-Simple Powershell password manager
+Simple password manager. Switch the branch to PowerShell for the PowerShell version.
 
 <h1>TO USE</h1>
 
